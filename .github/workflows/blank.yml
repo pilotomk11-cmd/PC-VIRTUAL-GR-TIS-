@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC VIRTUAL GR-TIS</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: #071a35;
+}
+
+.desktop {
+  height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg,#071a35,#1266a5,#071a35);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: repeat(2, 85px);
+  gap: 25px;
+}
+
+.app {
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.app:hover {
+  background: #ffffff33;
+}
+
+.app span {
+  display: block;
+  font-size: 35px;
+}
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+  background: #101d30;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 7px;
+  background: #1685df;
+  color: white;
+  cursor: pointer;
+}
+
+.window {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 8%;
+  width: 84%;
+  min-height: 200px;
+  background: #172c49;
+  border: 2px solid #1685df;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="desktop">
+  <h2>💻 PC VIRTUAL GR-TIS</h2>
+  <p>Bem-vindo ao seu computador virtual!</p>
+
+  <div class="icons">
+    <div class="app" onclick="abrir('arquivos')">
+      <span>📁</span>Arquivos
+    </div>
+
+    <div class="app" onclick="abrir('navegador')">
+      <span>🌐</span>Navegador
+    </div>
+
+    <div class="app" onclick="abrir('notas')">
+      <span>📝</span>Bloco de notas
+    </div>
+
+    <div class="app" onclick="abrir('sistema')">
+      <span>⚙️</span>Configurações
+    </div>
+  </div>
+</div>
+
+<div id="arquivos" class="window">
+  <h3>📁 Meus arquivos</h3>
+  <p>Seus arquivos aparecerão aqui.</p>
+  <button onclick="fechar('arquivos')">Fechar</button>
+</div>
+
+<div id="navegador" class="window">
+  <h3>🌐 Navegador</h3>
+  <input id="site" placeholder="Digite um endereço">
+  <button onclick="irSite()">Abrir site</button>
+  <button onclick="fechar('navegador')">Fechar</button>
+</div>
+
+<div id="notas" class="window">
+  <h3>📝 Bloco de notas</h3>
+  <textarea style="width:100%;height:100px"
+  placeholder="Escreva aqui..."></textarea>
+  <button onclick="fechar('notas')">Fechar</button>
+</div>
+
+<div id="sistema" class="window">
+  <h3>⚙️ Configurações</h3>
+  <p>PC VIRTUAL GR-TIS</p>
+  <p>Versão 1.0</p>
+  <button onclick="fechar('sistema')">Fechar</button>
+</div>
+
+<div class="taskbar">
+  <button onclick="alert('PC VIRTUAL GR-TIS')">⊞ Iniciar</button>
+  <span>💻 GR-TIS</span>
+  <span id="clock"></span>
+</div>
+
+<script>
+function abrir(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function fechar(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+function irSite() {
+  let site = document.getElementById("site").value;
+  if(site) {
+    window.open(
+      "https://" + site.replace(/^https?:\/\//, ""),
+      "_blank"
+    );
+  }
+}
+
+function atualizarHora() {
+  document.getElementById("clock").textContent =
+    new Date().toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+}
+
+atualizarHora();
+setInterval(atualizarHora, 1000);
+</script>
+
+</body>
+</html>
